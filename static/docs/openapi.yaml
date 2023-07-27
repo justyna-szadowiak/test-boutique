@@ -1,0 +1,78 @@
+openapi: 3.0.3
+info:
+  version: 1.0.0
+  title: PrecisionTestPro Product API
+  description: API for listing products available at PrecisionTestPro store.
+paths:
+  /products/:
+    get:
+      summary: Get a list of products
+      description: Retrieve a list of products available in the ExquisiteTestech store.
+      responses:
+        '200':
+          description: A list of products.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      description: The unique identifier for the product.
+                    name:
+                      type: string
+                      description: The name of the product.
+                    price:
+                      type: integer
+                      format: float
+                      description: The price of the product.
+                    description:
+                      type: string
+                      description: A brief description of the product.
+                    wiki:
+                      type: string
+                      description: Link to a wikipedia page related the product.
+  /product/{id}:
+    get:
+      summary: Get a single product
+      description: Retrieve information about a single product
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: "get information about a single product based on the product ID"
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    description: The unique identifier for the product.
+                  name:
+                    type: string
+                    description: The name of the product.
+                  price:
+                    type: integer
+                    format: float
+                    description: The price of the product.
+                  description:
+                    type: string
+                    description: A brief description of the product.
+                  wiki:
+                    type: string
+                    description: Link to a wikipedia page related the product.
+                  relatedProducts:
+                    type: array
+                    items:
+                      type: integer
+                      description: List of related product IDs
+                      example:
+                        [5431, 5432, 5434]
+
