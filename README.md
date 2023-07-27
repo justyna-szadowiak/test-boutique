@@ -19,7 +19,7 @@ Create fully automated testing setup. Here's few a few points to get you started
 
 ## Project structure
 
-This project is made of two compnnents and your automated setup should test both of them:
+This project is made of two components and your automated setup should test both of them:
 
 * API
     * [OpenAPI Specification](https://testboutique-precisiontest.deno.dev/static/docs/)
