@@ -10,7 +10,7 @@ Create fully automated testing setup. Here's few a few points to get you started
 * add tests to working features (if you think that a given functionality is important for the user)
 * create a show-off setup, but don't overdo it
     * use all the latest and greatest tools you know
-    * use all the techniquest you are aware of that fit this assignment
+    * use all the techniques you are aware of that make sesne for this assignment
 * use TypeScript if possible (if not use JavaScript)
     * for API tests Postman / Newman is preferable
     * for GUI tests Cypress is preferable (Playwright is a viable alternative)
