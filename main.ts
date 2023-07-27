@@ -18,7 +18,7 @@ const products = [
     "name": "NanoScan Spectrometer",
     "price": 299.99,
     "description": "The ultimate spectrometer for nanoscale material analysis.",
-    "wiki": "https://en.wikipedia.org/wiki/Spectrometer"
+    "wiki": "ttps://en.wikipedia.org/wiki/Spectrometer"
   },
   {
     "id": 3838,
