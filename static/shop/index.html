@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrecisionTestPro products and information</title>
+    <!-- Include Tailwind CSS from CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<dialog id="dialog" class="w-4/5 h-4/5 drop-shadow-2xl">
+    <h1 class="text-2xl bold">Welcome to the PrecisionTestPro information page</h1>
+    <img src="research.svg" class="w-1/5" alt="illustration - image of a microscope" />
+    <p>Click on the buttons to read more about our products and close this window <a href="#" id="close-modal" class="text-blue-500">here</a></p>
+</dialog>
+<body class="bg-gray-100">
+    <div class="container mx-auto p-4">
+        <h1 class="text-4xl font-bold text-center mb-8">PrecisionTestPro produtcs and infomration</h1>
+        <p class="mb-5">On this page you can read our pdf brochures or read more about our products on wikipedia.</p>
+        <div class="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3" id="products">
+            <!-- Add more product tiles here if needed -->
+        </div>
+    </div>
+</body>
+<script>
+
+fetch("/products/")
+    .then(resp => (resp.json()))
+    .then(products => {
+        const productsHTML = products.reduce((accumulator, product) => accumulator + `<div class="prod-item bg-white rounded-lg shadow-lg p-6">
+                <h2 class="text-xl font-semibold mb-2">${product.name}</h2>
+                <img src="product.jpg" alt="image of the product" class="text-sm text-gray-400" />
+                <p class="text-gray-600">${product.description.substr(2)}</p>
+                <div class="flex justify-between items-center mt-4">
+                    <span class="text-lg font-bold">$ ${Math.ceil(product.price) }</span>
+                </div>
+                <div class="flex justify-between items-center mt-4">
+                    <a href="/products/brochure.pdf" class="text-sm px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded">Download PDF</a>
+                    <a href="${product.wiki}" class="text-sm px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded">Read on wikipedia</a>
+                </div>
+            </div>`, "");
+        const targetElement = document.getElementById('products').innerHTML = productsHTML;
+
+        const productElements = document.querySelectorAll('.prod-item');
+        const fourthProductElement = productElements[2];
+        fourthProductElement.addEventListener('mouseover', () => {
+            fourthProductElement.remove();
+        });
+    });
+
+const dialog = document.getElementById("dialog")
+setTimeout(() => dialog.showModal(), 1000);
+
+const closeModal = document.getElementById("close-modal")
+closeModal.addEventListener('click', (e) => {
+    e.preventDefault();
+    dialog.close();
+})
+</script>
+</html>
