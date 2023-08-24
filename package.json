@@ -1,0 +1,15 @@
+{
+  "name": "test-boutique",
+  "version": "1.0.0",
+  "main": "main.ts",
+  "scripts": {
+    "test": "cypress open",
+    "cy:run": "cypress run"
+  },
+  "keywords": [],
+  "author": "Justyna",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^12.17.4"
+  }
+}
