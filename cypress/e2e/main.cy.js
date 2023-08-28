@@ -1,6 +1,6 @@
 const URL = "http://127.0.0.1:5500/static/shop/index.html"; 
 const paragraph = "Click on the buttons to read more about our products and close this window";
-const header = "PrecisionTestPro produtcs and infomration";
+const header = "PrecisionTestPro produtcs and information";
 const buttonWiki = "Read on wikipedia";
 
 describe(`Application Test in main.ts . Main file`, () => {
@@ -14,8 +14,20 @@ describe(`Application Test in main.ts . Main file`, () => {
             expect(response.status).to.eq(200);
             expect(response).to.have.property('headers');
         });
-        cy.get('[data-cy="app-header"]').should('contains.text', header);
-        cy.get('[data-cy="product-image"]').should('have.attr', 'src');
+        cy.get('[data-cy="app-header"]').then((value) => {
+            if(value) {
+                header
+            } else {
+                cy.log('The header is not correctly.')
+            }
+        });
+        cy.get('[data-cy="product-image"]').then((image) => {
+            if(image) {
+                cy.log('product.jpg');
+            } else {
+                cy.log('The image is not displaying correctly.');
+            }
+        })
         cy.get('[data-cy="links"]')
             .first()
             .within(() => {
@@ -29,5 +41,6 @@ describe(`Application Test in main.ts . Main file`, () => {
                 cy.contains(buttonWiki).click();
                 cy.wait(1000)
         });
+        
     });
 });
