@@ -48,7 +48,7 @@ async function handler(req: Request): Promise<Response> {
   const productIdMatch = PRODUCT_ID_ROUTE.exec(req.url);
   const publicMatch = PUBLIC_ROUTE.exec(req.url);
 
-  if (productsMatch) {     
+  if (productsMatch) {
     return new Response(JSON.stringify(products), { headers: { "content-type": "application/json; charset=utf-8", 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET, POST, OPTIONS' }});
   } else if (productIdMatch) {
     const URLid = productIdMatch.pathname.groups.id;
@@ -58,7 +58,7 @@ async function handler(req: Request): Promise<Response> {
           products.find(product => product.id === Number(URLid)),
           products[0]
         ]),
-        { headers: { "content-type": "application/json; charset=utf-8" }});
+        { headers: { "content-type": "application/json; charset=utf-8", 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET, POST, OPTIONS' }});
   }
   else if (publicMatch) {
     // PUBLIC ROUTE
