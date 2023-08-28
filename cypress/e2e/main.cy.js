@@ -8,5 +8,9 @@ describe(`Application Test in main.ts . Main file`, () => {
             cy.get('[data-cy="paragraph-modal"]').should('contains.text', paragraph);
             cy.get('[data-cy="close-modal"]').click({multiple: true});
         });
+        cy.request('GET', URL).then(response => {
+            expect(response.status).to.eq(200);
+            expect(response).to.have.property('headers');
+        });
     });
 });
