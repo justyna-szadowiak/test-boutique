@@ -43,14 +43,13 @@ const products = [
   },
 ];
 
-async function handler(req: Request): Response {
+async function handler(req: Request): Promise<Response> {
   const productsMatch = PRODUCTS_ROUTE.exec(req.url);
   const productIdMatch = PRODUCT_ID_ROUTE.exec(req.url);
   const publicMatch = PUBLIC_ROUTE.exec(req.url);
 
-
-  if (productsMatch) {
-    return new Response(JSON.stringify(products), { headers: { "content-type": "application/json; charset=utf-8" }});
+  if (productsMatch) {     
+    return new Response(JSON.stringify(products), { headers: { "content-type": "application/json; charset=utf-8", 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET, POST, OPTIONS' }});
   } else if (productIdMatch) {
     const URLid = productIdMatch.pathname.groups.id;
     return new Response(
