@@ -24,8 +24,8 @@
 </body>
 <script>
 
-fetch("/products/")
-    .then(resp => (resp.json()))
+fetch("http://localhost:8000/products/")
+    .then(async(resp) => await resp.json())
     .then(products => {
         const productsHTML = products.reduce((accumulator, product) => accumulator + `<div class="prod-item bg-white rounded-lg shadow-lg p-6">
                 <h2 class="text-xl font-semibold mb-2">${product.name}</h2>
