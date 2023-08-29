@@ -1,40 +1,44 @@
 # Test Boutique
 
-This is a playground for QA people. It's made of an API and a web GUI. Both parts are slightly broken. Your job is to find bugs in this sytem.
+This is a playground for QA people. It's made of an API and a web GUI. Both parts are slightly broken, and it contains tests written to point out on the issues. Also there are couple tests just to be perfectly sure that anything won't interupt user while using the application.
 
-## Project objective
+## Project description
 
-Create fully automated testing setup. Here's few a few points to get you started:
+Project is made of backend(Swagger) and frontend(TypeScript + HTML), and several tests as mentioned above. Tests are written in Cypress and Postman/Newman.
 
-* add tests to all the bugs you find
-* add tests to working features (if you think that a given functionality is important for the user)
-* create a show-off setup, but don't overdo it
-    * use all the latest and greatest tools you know
-    * use all the techniques you are aware of that make sesne for this assignment
-* use TypeScript if possible (if not use JavaScript)
-    * for API tests Postman / Newman is preferable
-    * for GUI tests Cypress is preferable (Playwright is a viable alternative)
-* run the code in CI pipeline (if possible)
-* save your work in a git repo (with some nice, readable commits)
+List of technologies:
+    "cypress": "^12.17.4",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui": "5.4.2",
+    "typescript": "^5.2.2"
+
+Those technologies were used accordingly to the business requierments.
+As well as that, for test workflow of the project is used CI GitHub Actions.
 
 ## Project structure
-
-This project is made of two components and your automated setup should test both of them:
 
 * API
     * [OpenAPI Specification](https://testboutique-precisiontest.deno.dev/static/docs/)
 * web GUI
     * [PrecisionTestPro produtcs website](https://testboutique-precisiontest.deno.dev/static/shop/)
 
-Write separate tests for API and for GUI.
+*CI
+    *[.github/worflows]
 
-## Solution notes
+*Cypress Test
+    *[cypress/e2e/main.cy.js]
 
-Your final repo should contain:
+*Postman Test
+    *[static/docs/tests/PrecisionTestPro Product API.postman_collection.json]
 
-* working code
-* reasonable `README` file
-* nice commmit history
-* and few nice to haves (if possible and if you have time)
-    * test reports
-    * CI pipleline integration
+
+## Instruction to run project
+
+1. npm install
+2. irm https://deno.land/install.ps1 | iex
+3. deno run
+4. npm install cypress --save-dev
+5. cypress run
+6. npm install -g newman 
+7. npm run
+ 
