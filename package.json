@@ -1,15 +1,23 @@
 {
   "name": "test-boutique",
   "version": "1.0.0",
+  "description": "This is a test project for QA Tester",
   "main": "main.ts",
   "scripts": {
     "test": "cypress open",
-    "cy:run": "cypress run"
+    "cy:run": "cypress run",
+    "start": "npm run"
   },
   "keywords": [],
   "author": "Justyna",
   "license": "ISC",
   "devDependencies": {
-    "cypress": "^12.17.4"
+    "cypress": "^12.17.4",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui": "5.4.2",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "ts-node": "^10.9.1"
   }
 }
