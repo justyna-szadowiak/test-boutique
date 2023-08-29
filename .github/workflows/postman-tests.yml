@@ -1,0 +1,22 @@
+name: Postman Tests
+
+on: [push]
+
+jobs: 
+  postman:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+
+      - name: Install Newman
+        run: npm install -g Newman
+
+      - name: Run Postman tests
+        run: newman run  ../static/docs/tests/PrecisionTestPro Product API.postman_collection.json
