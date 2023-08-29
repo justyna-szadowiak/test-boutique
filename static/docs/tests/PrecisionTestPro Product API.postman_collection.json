@@ -1,0 +1,281 @@
+{
+	"info": {
+		"_postman_id": "ab7d20cf-ad55-401b-b0e2-dc67fed5fcad",
+		"name": "PrecisionTestPro Product API",
+		"description": "API for listing products available at PrecisionTestPro store.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Products test",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const response = pm.response.json();\r",
+							"\r",
+							"//Test to check is GET request matching any of the following codes\r",
+							"pm.test(\"Successful GET request\", () => {\r",
+							"  pm.expect(pm.response.code).to.be.oneOf([200, 202]);\r",
+							"});\r",
+							"\r",
+							"//Test to display in case the page will not be displaying\r",
+							"pm.test(\"Page not found\", () => {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([400, 404]);\r",
+							"});\r",
+							"\r",
+							"//Test for checking if the response is taking the right amount of time - 100ms\r",
+							"pm.test(\"Response time is less than 100ms\", () => {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(100);\r",
+							"});\r",
+							"\r",
+							"//Check test to find out about validity of body from the response\r",
+							"pm.test(\"response must be valid and have a body\", function () {\r",
+							"     pm.response.to.be.ok;\r",
+							"     pm.response.to.be.withBody;\r",
+							"     pm.response.to.be.json;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"products\":\r\n        [\r\n            {\r\n                \"id\":\"number\",\r\n                \"name\":\"string\",\r\n                \"price\":\"number\",\r\n                \"description\":\"string\",\r\n                \"wiki\":\"string\"\r\n                },\r\n        ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/products/?id=5431&name=TechSure Multimeter&price=49.99&description=A cutting-edge multimeter for precise electrical measurements.&wiki=https://en.wikipedia.org/wiki/Multimeter",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"products",
+						""
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "5431"
+						},
+						{
+							"key": "name",
+							"value": "TechSure Multimeter"
+						},
+						{
+							"key": "price",
+							"value": "49.99"
+						},
+						{
+							"key": "description",
+							"value": "A cutting-edge multimeter for precise electrical measurements."
+						},
+						{
+							"key": "wiki",
+							"value": "https://en.wikipedia.org/wiki/Multimeter"
+						}
+					]
+				},
+				"description": "Retrieve a list of products available in the ExquisiteTestech store."
+			},
+			"response": [
+				{
+					"name": "A list of products.",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/products/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"products",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "[\n  {\n    \"id\": 83915163,\n    \"name\": \"esse tempor consectetur\",\n    \"price\": -95750136,\n    \"description\": \"ex\",\n    \"wiki\": \"tempor dolor eu\"\n  },\n  {\n    \"id\": -10091821,\n    \"name\": \"amet cillu\",\n    \"price\": 48388441,\n    \"description\": \"incididunt est sed\",\n    \"wiki\": \"proident officia Duis\"\n  }\n]"
+				}
+			]
+		},
+		{
+			"name": "Get a single product",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const response = pm.response.json();\r",
+							"\r",
+							"const product = [\r",
+							"    null,\r",
+							"    {\r",
+							"        \"id\": 5431,\r",
+							"        \"name\": \"TechSure Multimeter\",\r",
+							"        \"price\": 49.99,\r",
+							"        \"description\": \"A cutting-edge multimeter for precise electrical measurements.\",\r",
+							"        \"wiki\": \"https://en.wikipedia.org/wiki/Multimeter\"\r",
+							"    }\r",
+							"]\r",
+							"\r",
+							"//Check is GET request return with success\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"//Test id value of the product\r",
+							"pm.test(\"Test id of the product\", () => {    \r",
+							"    pm.expect(product[1].id).to.equal(5431);\r",
+							"})\r",
+							"\r",
+							"//Test id value of the product\r",
+							"pm.test(\"Test id of the product\", () => {    \r",
+							"    pm.expect(product[1].id).to.equal(3838);\r",
+							"})\r",
+							"\r",
+							"//Test is id value of the product equal to null - test should fail\r",
+							"pm.test(\"Test id of the product\", () => {    \r",
+							"    pm.expect(product[1].id).to.equal(null);\r",
+							"})\r",
+							"\r",
+							"//Test is id value of the product equal to string - test should fail\r",
+							"pm.test(\"Test id of the product\", () => {    \r",
+							"    pm.expect(product[1].id).to.equal(\"/:id\");\r",
+							"})\r",
+							"\r",
+							"//Test product types \r",
+							"pm.test(\"Test types of the product\", () => {\r",
+							"    pm.expect(product[1].id).to.be.a('number');\r",
+							"    pm.expect(product[1].name).to.be.a('string');\r",
+							"    pm.expect(product[1].price).to.be.a('number');\r",
+							"    pm.expect(product[1].description).to.be.a('string');\r",
+							"    pm.expect(product[1].wiki).to.be.a('string');\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/product/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"product",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "-82718831",
+							"description": "(Required) get information about a single product based on the product ID"
+						}
+					]
+				},
+				"description": "Retrieve information about a single product"
+			},
+			"response": [
+				{
+					"name": "successful operation",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/product/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"product",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "-82718831",
+									"description": "(Required) get information about a single product based on the product ID"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"id\": 23415005,\n  \"name\": \"Ut dolore veniam officia sit\",\n  \"price\": 54000902,\n  \"description\": \"occaecat dolore\",\n  \"wiki\": \"quis sit est eiusmod\",\n  \"relatedProducts\": [\n    48332369,\n    71442490\n  ]\n}"
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "/",
+			"type": "string"
+		}
+	]
+}
