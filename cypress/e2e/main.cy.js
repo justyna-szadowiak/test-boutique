@@ -52,6 +52,7 @@ describe(`Application Test in main.ts . Main file`, () => {
             });
         });
         cy.go('back');
+        //Test should check the link for wikipedia
         cy.get('[data-cy="link-wiki"]')
             .first()
             .within(() => {
